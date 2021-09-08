@@ -1,20 +1,35 @@
 import React, { useState } from "react";
 
-const Login = () => {
+const Component = ({
+  headingLabel,
+  headingPlaceHolder,
+  passwordLabel,
+  passwordPlaceHolder,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [todoData] = useState([]);
 
-  const credentials = {
-    email: "shristi@gmail.com",
-    password: "123456",
-  };
+  // const login = () => {
+  //   if (email === credentials.email && password === credentials.password) {
+  //     alert("Form Validated");
+  //   } else {
+  //     alert("Error");
+  //
+  // };
 
-  const login = () => {
-    if (email === credentials.email && password === credentials.password) {
-      alert("Form Validated");
-    } else {
-      alert("Error");
-    }
+  // create a calculator and find sum , then display the final output using map and useState
+
+  const addTask = () => {
+    const obj = {
+      name: password,
+      task: email,
+    };
+
+    todoData.push(obj);
+    console.log(todoData);
+    setEmail("");
+    setPassword("");
   };
 
   const onEmailChange = (e) => {
@@ -29,40 +44,48 @@ const Login = () => {
     <div classNameName="login">
       <div className="mb-3">
         <label for="exampleFormControlInput1" className="form-label">
-          Email address
+          {headingLabel}
         </label>
         <input
           type="email"
           className="form-control"
           id="exampleFormControlInput1"
           value={email}
-          placeholder="name@example.com"
+          placeholder={headingPlaceHolder}
           onChange={onEmailChange}
         />
       </div>
       <div className="mb-3">
         <label for="exampleFormControlInput1" className="form-label">
-          Password
+          {passwordLabel}
         </label>
         <input
           value={password}
           onChange={onPasswordChange}
-          type="password"
+          type="text"
           className="form-control"
           id="exampleFormControlInput1"
-          placeholder="password..."
+          placeholder={passwordPlaceHolder}
         />
         <button
           type="button"
           style={{ marginTop: 20, width: "100%" }}
           class="btn btn-success"
-          onClick={login}
+          onClick={addTask}
         >
-          Login
+          Add Task
         </button>
       </div>
+      {todoData.map((element) => {
+        return (
+          <div>
+            <h2>Task: {element.task}</h2>
+            <h2>Name: {element.name}</h2>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
-export default Login;
+export default Component;

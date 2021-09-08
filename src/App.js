@@ -1,12 +1,17 @@
 import React from "react";
-import Login from "./components/Login/Login";
 // import Map from "./map/Map";
+import Component from "./components/Login/Component";
 
 const App = () => {
   return (
     <div className="app">
-      <Login />
       {/* <Map /> */}
+      <Component
+        headingLabel="Add Task"
+        headingPlaceHolder="Task.."
+        passwordLabel="name"
+        passwordPlaceHolder="name.."
+      />
     </div>
   );
 };
